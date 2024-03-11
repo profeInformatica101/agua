@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            font-family: Arial, sans-serif;
+        }
+
+        #player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        #welcome {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2vw; /* Usa vw para que el tamaño se ajuste al ancho de la ventana */
+            color: white;
+            text-align: center;
+            text-shadow: 2px 2px 4px #000000;
+        }
+
+        .logo-wrapper {
+            background-image: url('https://i.ibb.co/mTG9cbw/logo-alixar.png');
+            background-size: cover;
+            border-radius: 50%;
+            width: 15vw; /* Usa vw para que el tamaño se ajuste al ancho de la ventana */
+            height: 15vw; /* Usa vw para mantener la proporción */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            margin: auto;
+            position: absolute;
+            top: 40%; /* Ajusta la posición */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .tournament-link {
+            position: absolute;
+            top: 70%; /* Posición ajustada para mejor visibilidad */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5vw; /* Usa vw para que el tamaño del texto se ajuste al ancho de la ventana */
+            background-color: #007bff;
+            color: white;
+            padding: 1vw 2vw; /* Usa vw para que el padding sea proporcional */
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 2px 2px 4px #000000;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .tournament-link:hover {
+            background-color: #0056b3;
+        }
+
+        .tournament-link i {
+            margin: 0 5px;
+        }
+
+        /* Media queries para diferentes tamaños de pantalla */
+        @media (max-width: 768px) { /* Para tablets y dispositivos más pequeños */
+            #welcome, .tournament-link {
+                font-size: 3vw; /* Aumenta el tamaño del texto para mejor legibilidad */
+            }
+
+            .logo-wrapper {
+                width: 20vw;
+                height: 20vw;
+                top: 30%; /* Ajusta la posición para evitar solapamientos */
+            }
+
+            .tournament-link {
+                padding: 2vw 4vw; /* Aumenta el padding para un toque más grande */
+            }
+        }
+
+        @media (max-width: 480px) { /* Para teléfonos móviles */
+            #welcome, .tournament-link {
+                font-size: 5vw; /* Aumenta el tamaño del texto para mejor legibilidad en pantallas pequeñas */
+            }
+
+            .logo-wrapper {
+                width: 30vw;
+                height: 30vw;
+                top: 25%; /* Ajusta la posición para evitar solapamientos */
+            }
+
+            .tournament-link {
+                padding: 3vw 6vw; /* Aumenta el padding para un toque más grande */
+            }
+        }
+    </style>
+    <!-- Añadir FontAwesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+    <div id="player"></div>
+    <div class="logo-wrapper"></div>
+    <div id="welcome">En la Semana Cultural, el ajedrez nos enseña: como el agua, cada movimiento es vital.</div>
+
+    <!-- Enlace al torneo con íconos -->
+    <a href="https://lichess.org/tournament/csEATrAm" class="tournament-link">
+        <i class="fas fa-chess-knight"></i> <!-- Ícono del caballo -->
+        Apúntate al torneo
+        <i class="fas fa-chess-board"></i> <!-- Ícono del tablero -->
+    </a>
+
+    <script>
+        var tag = document.createElement('script');
+        var videos = ['AdW76XukTqw', 'fmSRVczRGVA'];
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            var videoId = videos[Math.floor(Math.random() * videos.length)];
+            player = new YT.Player('player', {
+                height: '100%',
+                width: '100%',
+                videoId: videoId,
+                playerVars: { 
+                    'autoplay': 1, 
+                    'controls': 0, 
+                    'autohide': 1,
+                    'wmode': 'opaque', 
+                    'disablekb': 1,
+                    'enablejsapi': 1,
+                    'mute': 1,
+                    'loop': 1,
+                    'playlist': videoId
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+    </script>
+</body>
+</html>
