@@ -1,120 +1,118 @@
 <!DOCTYPE html>
-<meta charset="UTF-8">
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            font-family: Arial, sans-serif;
-        }
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  font-family: Arial, sans-serif;
+}
 
-        #player {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-        }
+#player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
 
-        #welcome {
-            position: absolute;
-            top: 15%; /* Ajustado para dejar espacio para más texto */
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 2vw;
-            color: white;
-            text-align: center;
-            text-shadow: 2px 2px 4px #000000;
-        }
+#player iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
 
-        #details { /* Nuevo estilo para detalles de fecha y ritmo */
-            position: absolute;
-            top: 25%; /* Colocado debajo del mensaje de bienvenida */
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1.2vw; /* Texto más pequeño */
-            color: #ddd; /* Color ligeramente más claro */
-            text-align: center;
-            text-shadow: 1px 1px 2px #000;
-        }
+#player::before { /* Añade un overlay para mejorar la legibilidad del texto */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Overlay oscuro semi-transparente */
+  z-index: 1;
+}
 
-        .logo-wrapper {
-            background-image: url('https://i.ibb.co/mTG9cbw/logo-alixar.png');
-            background-size: cover;
-            border-radius: 50%;
-            width: 15vw;
-            height: 15vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
-            margin: auto;
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+/* Ajustes del contenido y del tamaño del texto y botones */
+#details, #welcome, .tournament-link {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2; /* Asegura que el texto esté sobre el overlay y el video */
+}
 
-        .tournament-link {
-            position: absolute;
-            top: 70%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1.5vw;
-            background-color: #007bff;
-            color: white;
-            padding: 1vw 2vw;
-            text-decoration: none;
-            border-radius: 5px;
-            box-shadow: 2px 2px 4px #000000;
-            display: inline-flex;
-            align-items: center;
-        }
+#details {
+  top: 25%;
+  color: #ddd;
+  font-size: 16px; /* Tamaño fijo para móviles y ajuste en media query para pantallas mayores */
+  text-shadow: 1px 1px 2px #000;
+}
 
-        .tournament-link:hover {
-            background-color: #0056b3;
-        }
+#welcome {
+  top: 10%;
+  color: white;
+  font-size: 18px; /* Tamaño fijo para móviles y ajuste en media query para pantallas mayores */
+  text-shadow: 2px 2px 4px #000000;
+}
 
-        .tournament-link i {
-            margin: 0 5px;
-        }
+.logo-wrapper {
+  width: 80px; /* Tamaño fijo para móviles y ajuste en media query para pantallas mayores */
+  height: 80px; /* Mantén la proporción */
+  top: 35%;
+}
 
-        @media (max-width: 768px) {
-            #welcome, .tournament-link, #details {
-                font-size: 3vw;
-            }
+.tournament-link {
+  top: 60%;
+  font-size: 14px; /* Tamaño fijo para móviles y ajuste en media query para pantallas mayores */
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px #000000;
+}
 
-            .logo-wrapper {
-                width: 20vw;
-                height: 20vw;
-                top: 30%;
-            }
+@media (min-width: 768px) {
+  #details, #welcome {
+    font-size: 2vw; /* Ajustes para tabletas y pantallas mayores */
+  }
 
-            .tournament-link {
-                padding: 2vw 4vw;
-            }
-        }
+  .logo-wrapper {
+    background-image: url('https://i.ibb.co/mTG9cbw/logo-alixar.png'); /* Verifica que esta URL sea correcta y esté accesible */
+    background-size: contain; /* Cambio para asegurar que el logo se ajuste dentro del div */
+    background-repeat: no-repeat; /* Asegúrate de que la imagen no se repita */
+    background-position: center; /* Centra la imagen en el div */
+    border-radius: 50%;
+    width: 15vw; /* Ajuste del tamaño del logo según sea necesario */
+    height: 15vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    margin: auto;
+    position: absolute;
+    top: 45%; /* Ajuste de la posición según sea necesario */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* Asegúrate de que el logo esté sobre el video */
+}
 
-        @media (max-width: 480px) {
-            #welcome, .tournament-link, #details {
-                font-size: 5vw;
-            }
+  .tournament-link {
+    font-size: 1.5vw; /* Ajuste del botón para tabletas y pantallas mayores */
+    padding: 1vw 2vw;
+  }
+}
 
-            .logo-wrapper {
-                width: 30vw;
-                height: 30vw;
-                top: 25%;
-            }
-
-            .tournament-link {
-                padding: 3vw 6vw;
-            }
-        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
@@ -123,17 +121,17 @@
     <div id="player"></div>
     <div class="logo-wrapper"></div>
     <div id="welcome">En la Semana Cultural, el ajedrez nos enseña: como el agua, cada movimiento es vital.</div>
-    <div id="details">24 de Abril, 12:45 - 14:45 | Ritmo de juego: 5 min por jugador</div> <!-- Detalles de la fecha y el ritmo de juego -->
+    <div id="details">24 de Abril, 12:45 - 14:45 | Ritmo de juego: 5 min por jugador</div>
 
     <a href="https://lichess.org/tournament/csEATrAm" class="tournament-link">
         <i class="fas fa-chess-knight"></i>
-        Ap&uacutentate al torneo
+        Apúntate al torneo
         <i class="fas fa-chess-board"></i>
     </a>
 
     <script>
         var tag = document.createElement('script');
-        var videos = ['AdW76XukTqw', 'fmSRVczRGVA', '3GymExBkKjE'];
+        var videos = ['AdW76XukTqw', 'fmSRVczRGVA'];
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
@@ -168,4 +166,5 @@
     </script>
 </body>
 </html>
+
 
