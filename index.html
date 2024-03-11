@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<meta charset="UTF-8">
 <html>
 <head>
     <style>
@@ -22,41 +23,52 @@
 
         #welcome {
             position: absolute;
-            top: 20%;
+            top: 15%; /* Ajustado para dejar espacio para más texto */
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 2vw; /* Usa vw para que el tamaño se ajuste al ancho de la ventana */
+            font-size: 2vw;
             color: white;
             text-align: center;
             text-shadow: 2px 2px 4px #000000;
+        }
+
+        #details { /* Nuevo estilo para detalles de fecha y ritmo */
+            position: absolute;
+            top: 25%; /* Colocado debajo del mensaje de bienvenida */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2vw; /* Texto más pequeño */
+            color: #ddd; /* Color ligeramente más claro */
+            text-align: center;
+            text-shadow: 1px 1px 2px #000;
         }
 
         .logo-wrapper {
             background-image: url('https://i.ibb.co/mTG9cbw/logo-alixar.png');
             background-size: cover;
             border-radius: 50%;
-            width: 15vw; /* Usa vw para que el tamaño se ajuste al ancho de la ventana */
-            height: 15vw; /* Usa vw para mantener la proporción */
+            width: 15vw;
+            height: 15vw;
             display: flex;
             justify-content: center;
             align-items: center;
             backdrop-filter: blur(5px);
             margin: auto;
             position: absolute;
-            top: 40%; /* Ajusta la posición */
+            top: 40%;
             left: 50%;
             transform: translateX(-50%);
         }
 
         .tournament-link {
             position: absolute;
-            top: 70%; /* Posición ajustada para mejor visibilidad */
+            top: 70%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 1.5vw; /* Usa vw para que el tamaño del texto se ajuste al ancho de la ventana */
+            font-size: 1.5vw;
             background-color: #007bff;
             color: white;
-            padding: 1vw 2vw; /* Usa vw para que el padding sea proporcional */
+            padding: 1vw 2vw;
             text-decoration: none;
             border-radius: 5px;
             box-shadow: 2px 2px 4px #000000;
@@ -72,40 +84,38 @@
             margin: 0 5px;
         }
 
-        /* Media queries para diferentes tamaños de pantalla */
-        @media (max-width: 768px) { /* Para tablets y dispositivos más pequeños */
-            #welcome, .tournament-link {
-                font-size: 3vw; /* Aumenta el tamaño del texto para mejor legibilidad */
+        @media (max-width: 768px) {
+            #welcome, .tournament-link, #details {
+                font-size: 3vw;
             }
 
             .logo-wrapper {
                 width: 20vw;
                 height: 20vw;
-                top: 30%; /* Ajusta la posición para evitar solapamientos */
+                top: 30%;
             }
 
             .tournament-link {
-                padding: 2vw 4vw; /* Aumenta el padding para un toque más grande */
+                padding: 2vw 4vw;
             }
         }
 
-        @media (max-width: 480px) { /* Para teléfonos móviles */
-            #welcome, .tournament-link {
-                font-size: 5vw; /* Aumenta el tamaño del texto para mejor legibilidad en pantallas pequeñas */
+        @media (max-width: 480px) {
+            #welcome, .tournament-link, #details {
+                font-size: 5vw;
             }
 
             .logo-wrapper {
                 width: 30vw;
                 height: 30vw;
-                top: 25%; /* Ajusta la posición para evitar solapamientos */
+                top: 25%;
             }
 
             .tournament-link {
-                padding: 3vw 6vw; /* Aumenta el padding para un toque más grande */
+                padding: 3vw 6vw;
             }
         }
     </style>
-    <!-- Añadir FontAwesome para los íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
@@ -113,17 +123,17 @@
     <div id="player"></div>
     <div class="logo-wrapper"></div>
     <div id="welcome">En la Semana Cultural, el ajedrez nos enseña: como el agua, cada movimiento es vital.</div>
+    <div id="details">24 de Abril, 12:45 - 14:45 | Ritmo de juego: 5 min por jugador</div> <!-- Detalles de la fecha y el ritmo de juego -->
 
-    <!-- Enlace al torneo con íconos -->
     <a href="https://lichess.org/tournament/csEATrAm" class="tournament-link">
-        <i class="fas fa-chess-knight"></i> <!-- Ícono del caballo -->
-        Apúntate al torneo
-        <i class="fas fa-chess-board"></i> <!-- Ícono del tablero -->
+        <i class="fas fa-chess-knight"></i>
+        Ap&uacutentate al torneo
+        <i class="fas fa-chess-board"></i>
     </a>
 
     <script>
         var tag = document.createElement('script');
-        var videos = ['AdW76XukTqw', 'fmSRVczRGVA'];
+        var videos = ['AdW76XukTqw', 'fmSRVczRGVA', '3GymExBkKjE'];
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
@@ -158,3 +168,4 @@
     </script>
 </body>
 </html>
+
